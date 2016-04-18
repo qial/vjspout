@@ -59,13 +59,14 @@ void loadEffects() {
   effects.add(new Circles1());
   effects.add(new Circles2());
   effects.add(new VDown1());
-  effects.get(effects.size()-1).setEnabled(true);
   effects.add(new VUp1());
   //effects.add(new TriangleWave2());
   //effects.add(new Arrowhead1());
   effects.add(new Rotater1());
   effects.add(new Arrowhead2());
-  effects.add(new Diamond1());
+  effects.add(new Diamond3());
+  // put this line after the default effect
+  effects.get(effects.size()-1).setEnabled(true);
   effects.add(new Diamond2());
 }
 
