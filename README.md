@@ -7,7 +7,7 @@ is currently Windows only, although it may be possible to eventually support usi
 To run in processing, create a folder called "code" and copy into it the
 files from the code32 or code64 folder, depending on whether you're using
 the 32 or 64 bit version of Processing and Java. Then simply open the vjspout.pde
-file in the Processing editor.
+file in the Processing editor and hit the run button.
 
 # Keys
 #### General Keys
