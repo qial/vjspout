@@ -8,10 +8,11 @@ imported into Resolume Avenue as a mask over visualizations provided by MilkDrop
 This sketch is currently Windows only, although it may be possible to eventually support 
 using Siphon instead of Spout on OSX. If anyone is interested in helping to develop Siphon 
 support, definitely let me know or send a pull request. I also use a Macbook for some
-things and would love to have full support for this sketch on OSX too, but I haven't spent
+things and would love to have full support for this sketch on OSX, but I haven't spent
 the time to look into it.
 
 I often stream visual development and other things at http://twitch.tv/theqial 
+
 Feel free to drop by and say hello!
 
 # Requirements
