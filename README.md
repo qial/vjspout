@@ -1,12 +1,25 @@
 # VJ Spout
-Processing java sketch that uses Spout to output controllable vj visuals.
+Processing 3.0 java sketch that uses Spout to output controllable vj visuals.
 Import the Spout output in Resolume or other video software. This code
 is currently Windows only, although it may be possible to eventually support using Siphon on OSX.
+
+At the moment this sketch is primarily used to output shapes in grayscale which is then
+imported into Resolume Avenue as a mask over visualizations provided by MilkDrop2.
+
+# Requirements
+- Java 7/8 JDK - http://java.com/en/download/
+- Processing 3 - http://processing.org
+- Spout2 - http://spout.zeal.co/
+
+#### Recommended 
+- Winamp & MilkDrop2 w/Spout
+- Resolume Avenue or VJ software to combine the two.
 
 # Instructions
 To run in processing, create a folder called "code" and copy into it the
 files from the code32 or code64 folder, depending on whether you're using
-the 32 or 64 bit version of Processing and Java.
+the 32 or 64 bit version of Processing and Java. Then simply open the vjspout.pde
+file in the Processing editor and hit the run button.
 
 # Keys
 #### General Keys
@@ -31,3 +44,14 @@ Using shift + key will change parameter by 5 instead of by 1.
 - shapes.pde - Helper method for drawing shapes used in effects.
 
 spout.pde, JSpout.java, and files in the code32 and code64 folders are from the Spout2 installation.
+
+### Development goals:
+
+- Save/load effect parameters
+- Load new effects on the fly instead of a compiled 1-9 list.
+- Automatic export-to-video button for good effects
+- Better effect abstraction to describe effects as shapes moving through time and hide the math.
+- Support for colored textures and effects beyond grayscale.
+- MIDI input support to change effect parameters using hardware controllers
+- Support for choosing output resolutions
+- Seamlessly transform effect code to produce same output across range of resolutions.
