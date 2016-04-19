@@ -9,10 +9,10 @@ files from the code32 or code64 folder, depending on whether you're using
 the 32 or 64 bit version of Processing and Java.
 
 # Keys
-## General Keys
+#### General Keys
 - v - toggles debug output for effects/params
 
-## Effect Keys
+#### Effect Keys
 Pressing number 1 to 9 selects that effect.
 Some effects have changeable parameters:
 
