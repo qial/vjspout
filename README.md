@@ -12,8 +12,8 @@ imported into Resolume Avenue as a mask over visualizations provided by MilkDrop
 - Spout2 - http://spout.zeal.co/
 
 #### Recommended 
-- Winamp & MilkDrop2 w/Spout
-- Resolume Avenue or VJ software to combine the two.
+- Winamp & MilkDrop2 w/Spout (modified milkdrop plugin is in the Spout2 installation)
+- Resolume Avenue or other VJ software to combine the two.
 
 # Instructions
 To run in processing, create a folder called "code" and copy into it the
@@ -41,15 +41,15 @@ Using shift + key will change parameter by 5 instead of by 1.
 - vjspout.pde - Main sketch file, loads effects and handles keyboard input.
 - effects.pde - Effect interface and helper classes along with specific effect code.
 - sequencer.pde - Sequencer handles the math to make sine-like movement easier for effects to use.
-- shapes.pde - Helper method for drawing shapes used in effects.
+- shapes.pde - Helper methods for drawing shapes used in effects.
 
 spout.pde, JSpout.java, and files in the code32 and code64 folders are from the Spout2 installation.
 
-### Development goals:
+#### Development goals:
 
 - Save/load effect parameters
 - Load new effects on the fly instead of a compiled 1-9 list.
-- Automatic export-to-video button for good effects
+- Export-to-video button for simplified export of good effects
 - Better effect abstraction to describe effects as shapes moving through time and hide the math.
 - Support for colored textures and effects beyond grayscale.
 - MIDI input support to change effect parameters using hardware controllers
