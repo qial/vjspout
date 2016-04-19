@@ -1,10 +1,16 @@
 # VJ Spout
 Processing 3.0 java sketch that uses Spout to output controllable vj visuals.
-Import the Spout output in Resolume or other video software. This code
-is currently Windows only, although it may be possible to eventually support using Siphon on OSX.
+Import the Spout output in Resolume or other video software. 
 
 At the moment this sketch is primarily used to output shapes in grayscale which is then
 imported into Resolume Avenue as a mask over visualizations provided by MilkDrop2.
+
+This sketch is currently Windows only, although it may be possible to eventually support 
+using Siphon instead of Spout on OSX. If anyone is interested in helping to develop Siphon 
+support, definitely let me know or send a pull request. 
+
+I often stream visual development and other things at http://twitch.tv/theqial 
+Feel free to drop by and say hello!
 
 # Requirements
 - Java 7/8 JDK - http://java.com/en/download/
