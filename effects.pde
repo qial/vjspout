@@ -1,101 +1,5 @@
 // effects.pde
-// The Effect interface and effect classes
-
-interface Effect
-{
-  String name();
-  void play();
-  void handleKey();
-  void setEnabled(boolean enabled);
-  boolean enabled();
-}
-
-abstract class SimpleEffect implements Effect
-{
-  String name() {
-    return getClass().getName();
-  }
-  boolean enabled = false;
-  void setEnabled(boolean enabled) {
-    this.enabled = enabled;
-  }
-  boolean enabled() {
-    return enabled;
-  }
-  void handleKey() {}
-  abstract void play();
-}
-
-abstract class ParamEffect extends SimpleEffect
-{
-  ArrayList paramNames = new ArrayList();
-  HashMap params = new HashMap();
-  void addParam(String name, int initialValue) {
-    paramNames.add(name);
-    params.put(name,initialValue);
-  }
-  void setParam(String name, float val) {
-    params.put(name,val);
-  }
-  int getParam(String name) {
-    return (int)params.get(name);
-  }
-  void handleKey() {
-    println("gotkey "+key);
-    switch(key) {
-      case 'q': incParam(0);break;
-      case 'Q': incParamAmt(0);break;
-      case 'a': decParam(0);break;
-      case 'A': decParamAmt(0);break;
-      case 'w': incParam(1);break;
-      case 'W': incParamAmt(1);break;
-      case 's': decParam(1);break;
-      case 'S': decParamAmt(1);break;
-      case 'e': incParam(2);break;
-      case 'E': incParamAmt(2);break;
-      case 'd': decParam(2);break;
-      case 'D': decParamAmt(2);break;
-      case 'r': incParam(3);break;
-      case 'R': incParamAmt(3);break;
-      case 'f': decParam(3);break;
-      case 'F': decParamAmt(3);break;
-    }
-  }
-  private void incParam(int num) {
-    println("incParam: "+num);
-    String param = (String)paramNames.get(num);
-    int v = (int)params.get(param);
-    v+= 1;
-    message(param+" = "+v);
-    params.put(param,v);
-  }
-  private void decParam(int num) {
-    println("decParam: "+num);
-    String param = (String)paramNames.get(num);
-    int v = (int)params.get(param);
-    v-=1;
-    message(param+" = "+v);
-    params.put(param,v);
-  }
-  private void incParamAmt(int num) {
-    println("incParamAmt: "+num);
-    // TODO make this change amount instead of just +5
-    String param = (String)paramNames.get(num);
-    int v = (int)params.get(param);
-    v+=5;
-    message(param+" = "+v);
-    params.put(param,v);
-  }
-  private void decParamAmt(int num) {
-    println("decParamAmt: "+num);
-    // TODO make this change amount instead of just +5
-    String param = (String)paramNames.get(num);
-    int v = (int)params.get(param);
-    v-=5;
-    message(param+" = "+v);
-    params.put(param,v);
-  }
-}
+// Effect implementations
 
 class Diamond1 extends ParamEffect
 {
@@ -217,6 +121,44 @@ class VDown1 extends SimpleEffect
 
 class VUp1 extends SimpleEffect
 {
+  void play() {
+    stroke(255);
+    for(int i = 0; i < 6; i++){
+      if(i == 0) {
+        float opacity = 255.0/120.0;
+        int frameAmt = frameCount%120;
+        
+        int alpha = (int) (255.0 * (waveDown(frameAmt,120)));
+        stroke(alpha);
+        fill(alpha);
+      } else {
+        stroke(255);
+        fill(255);
+      }
+      int off = 120*i;
+      off -= frameCount%120;
+      makeV(60,off+150);
+    }
+  }
+}
+
+class VUp2 extends ParamEffect
+{
+  String amt = "shapes";
+  String w = "width";
+  String inc = "spacing";
+  String fade = "fade";
+  //String amp = "amplitude";
+  //String start = "start";
+  VUp2() {
+    // set up params
+    addParam(amt,4);
+    addParam(w,60);
+    addParam(inc,60);
+    addParam(fade,60);
+    //addParam(amp,18);
+    //addParam(start,2);
+  }
   void play() {
     stroke(255);
     for(int i = 0; i < 6; i++){
@@ -417,5 +359,20 @@ class Diamond2 extends SimpleEffect
       quad(bottom_x,bottom_y+s,right_x+s,right_y,top_x,top_y-s,left_x-s,left_y);
       
     }
+  }
+}
+
+class WatashiMachine1 extends StreamEffect
+{
+  WatashiMachine1() {
+    // this one is nearly exact
+    //addCam(new Rectangle(0,530,250,180));
+    // this one doesn't cover up the white
+    addCam(new Rectangle(0,522,248,195));
+    // nearly exact
+    //setOuter(new Rectangle(300,44,960,600));
+    // for ff9
+    setOuter(new Rectangle(315,44,915,600));
+    setInner(new Rectangle(335,64,875,560));
   }
 }
