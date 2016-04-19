@@ -50,6 +50,9 @@ void makeV(int width, int offset) {
   //return v;
 }
 
+// uses a cosine model from 0 to pi and
+// returns a value from 1.0 to 0.0
+// frame/total is mapped to 0 to pi radians
 float waveDown(int frame, int total) {
   float dist = ((float)frame)/((float)total);
   float amp = cos(dist*PI);
@@ -60,6 +63,9 @@ float waveDown(int frame, int total) {
   return amp;
 }
 
+// uses a cosine model from pi to 2pi and
+// returns a value from 0.0 to 1.0
+// frame/total is mapped to pi to 2pi radians
 float waveUp(int frame, int total) {
   float dist = ((float)frame)/((float)total);
   float amp = cos((dist*PI)+PI);

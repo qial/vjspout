@@ -140,7 +140,7 @@ void keyPressed() {
       }
     }
   }
-  if(key == 'd') {
+  if(key == 'v') {
     if(DEBUG) {
       DEBUG = false;
     } else {
