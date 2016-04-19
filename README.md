@@ -22,7 +22,7 @@ Feel free to drop by and say hello!
 
 #### Recommended 
 - Winamp & MilkDrop2 w/Spout
-- Resolume Avenue or VJ software to combine the two.
+- Resolume Avenue or other VJ software to combine the two.
 
 # Instructions
 To run in processing, create a folder called "code" and copy into it the
