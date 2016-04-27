@@ -42,6 +42,8 @@ Some effects have changeable parameters:
 - w/s - control param 2
 - e/d - control param 3
 - r/f - control param 4
+- t/g - control param 5
+- y/h - control param 6
 
 Using shift + key will change parameter by 5 instead of by 1.
 
