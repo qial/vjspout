@@ -5,7 +5,6 @@ int getSizeForOffset(int offset) {
   return (int)(offset*2 * altitude);
 }
 
-
 void makeTriangle(int size, int offset) {
   noFill();
   stroke(255);

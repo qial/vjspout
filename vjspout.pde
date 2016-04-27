@@ -45,7 +45,7 @@ void setup() {
   // INITIALIZE A SPOUT SENDER HERE
   spout.initSender("Spout Processing", width, height);
   
-  seq = new Sequencer();
+  seq = new SineSequencer();
   seq.setSpeed(0.25);
   seq.setPeriod(1);
   

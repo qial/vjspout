@@ -1,7 +1,12 @@
 // sequencer.pde
-// Sequencer class to easily get sine wave motions
+// Sequencer interface and classes to easily get sine wave motions
 
-class Sequencer
+interface Sequencer
+{
+  float get(int point);
+}
+
+class SineSequencer implements Sequencer
 {
   // number of points in set
   // default is 10

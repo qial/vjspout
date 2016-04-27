@@ -51,6 +51,7 @@ Using shift + key will change parameter by 5 instead of by 1.
 - *effect.pde* - Effect interface and utility classes
 - *effects.pde* - Individual effect implementations 
 - *sequencer.pde* - Sequencer handles the math to make sine-like movement easier for effects to use.
+- *shape.pde* - Beginning work on an API for defining effects
 - *shapes.pde* - Helper methods for drawing shapes used in effects.
 
 spout.pde, JSpout.java, and files in the code32 and code64 folders are copied from the Spout2 installation.
