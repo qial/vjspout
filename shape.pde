@@ -27,14 +27,10 @@ class SquareShape extends RectShape
   }
 }
 
-class EllipseShape implements Shape
+class EllipseShape extends RectShape
 {
-  int x,y,w,h;
   EllipseShape(int x, int y, int w, int h) {
-    this.x = x;
-    this.y = y;
-    this.w = w;
-    this.h = h;
+    super(x,y,w,h);
   }
   void paint() {
     ellipse(x,y,w,h);
@@ -47,3 +43,33 @@ class CircleShape extends EllipseShape
     super(x,y,r*2,r*2);
   }
 }
+
+class VShape implements Shape
+{
+  int w,int o;
+  VShape(int w, int offset) {
+    this.w = w;
+    this.o = offset;
+  }
+  void paint() {
+    makeV(w,o);
+  }
+}
+
+class DiamondShape extends RectShape
+{
+  DiamondShape(int x, int y, int w, int h) {
+    super(x,y,w,h);
+  }
+  void paint() {
+    // reimplement paint to just make a diamond
+  }
+}
+
+// For shapes like the V, maybe I need a way to define a 
+// movement of some sort. That movement could be distance
+// in the case of the Vs, or size in the case of circles.
+// Movement could even be both, just an abstraction of 
+// size and position movements. Each shape can decide how
+// exactly to handle size or position changes defined by
+// the movements.
