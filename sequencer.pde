@@ -37,6 +37,7 @@ abstract class PeriodSequencer extends AbstractSequencer
   
   setPeriods(int periods) {
     this.periods = periods;
+    recalculate();
   }
 }
 
