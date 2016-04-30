@@ -18,7 +18,7 @@ PImage tex;
 
 float altitude = 0.5 * sqrt(3);
 
-Sequencer seq;
+SineSequencer seq;
 
 ArrayList<Effect> effects;
 

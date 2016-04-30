@@ -6,11 +6,32 @@ interface Sequencer
   float get(int point);
 }
 
-class SineSequencer implements Sequencer
+abstract class AbstractSequencer implements Sequencer
 {
   // number of points in set
   // default is 10
   int points = 10;
+  
+  // if true, range is 0 to 1 instead of -1 to 1
+  boolean positive = false;
+  
+  // recalculate any internal vars
+  abstract void recalculate();
+  
+  void setPoints(int points) {
+    this.points = points;
+    recalculate();
+  }
+  
+  void setPositive(boolean positive) {
+    this.positive = positive;
+    // likely nothing to recalculate, but just in case
+    recalculate();
+  }
+}
+
+class SineSequencer extends AbstractSequencer
+{
   
   // percentage of 2pi the points are over
   // default is 1
@@ -20,14 +41,11 @@ class SineSequencer implements Sequencer
   // default speed is a period every measure (once per 2 seconds)
   float speed = 1.0;
   
-  // if true, range is 0 to 1 instead of -1 to 1
-  boolean positive = false;
-  
   // offset, where to start pattern (Expected to be actual number)
   // Only particularly useful for exporting
   float offset = 0.0;
    
-  Sequencer () {
+  SineSequencer () {
     recalculate();
   }
   
@@ -66,20 +84,9 @@ class SineSequencer implements Sequencer
     frameSpeed = (PI / frameRate) * speed;
   }
   
-  void setPoints(int points) {
-    this.points = points;
-    recalculate();
-  }
-  
   void setPeriod(float period) {
     this.period = period;
     recalculate();
-  }
-  
-  void setPositive(boolean positive) {
-    this.positive = positive;
-    // nothing to recalculate, this only changes what we output
-    //recalculate();
   }
   
   void setSpeed(float speed) {
@@ -90,5 +97,22 @@ class SineSequencer implements Sequencer
   void setOffset(float offset) {
     this.offset = offset;
     recalculate();
+  }
+}
+
+class PulseSequencer extends AbstractSequencer
+{
+  
+  PulseSequencer() {
+    
+  }
+  
+  float get(int point) {
+    return 0;
+  }
+  
+  // recalculate internal variables
+  void recalculate() {
+    
   }
 }

@@ -46,7 +46,7 @@ class CircleShape extends EllipseShape
 
 class VShape implements Shape
 {
-  int w,int o;
+  int w, o;
   VShape(int w, int offset) {
     this.w = w;
     this.o = offset;
