@@ -56,7 +56,9 @@ void setup() {
 
 void loadEffects() {
   effects.add(new TriangleWave1());
-  effects.add(new Circles1());
+  effects.add(new PulseCircle1());
+  // put this line after the default effect
+  effects.get(effects.size()-1).setEnabled(true);
   effects.add(new Circles2());
   effects.add(new VDown1());
   effects.add(new VUp1());
@@ -67,8 +69,6 @@ void loadEffects() {
   effects.add(new Diamond3());
   //effects.add(new Diamond2());
   effects.add(new WatashiMachine1());
-  // put this line after the default effect
-  effects.get(effects.size()-1).setEnabled(true);
 }
 
 void draw()  { 

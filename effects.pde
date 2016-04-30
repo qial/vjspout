@@ -376,3 +376,30 @@ class WatashiMachine1 extends StreamEffect
     setInner(new Rectangle(335,64,875,560));
   }
 }
+
+class PulseCircle1 extends ParamEffect
+{
+  Sequencer seq = new PulseSequencer();
+  
+  String amt = "shapes";
+  String inc = "spacing";
+  String amp = "amplitude";
+  String skip = "skip";
+  PulseCircle1() {
+    // set up params
+    addParam(amt,5);
+    addParam(inc,100);
+    addParam(amp,40);
+    addParam(skip,3);
+  }
+  void play() {
+    stroke(255);
+    noFill();
+    for(int i = 0; i < getParam(amt); i++) {
+      float offset = i * getParam(inc);
+      float movement = seq.get(i) * getParam(amp);
+      int circle = (int) (600 - offset - movement);
+      makeCircle(circle);
+    }
+  }
+}

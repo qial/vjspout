@@ -35,7 +35,7 @@ abstract class PeriodSequencer extends AbstractSequencer
   // number of times the period runs over the course of a visual
   int periods = 1;
   
-  setPeriods(int periods) {
+  void setPeriods(int periods) {
     this.periods = periods;
     recalculate();
   }
@@ -113,13 +113,49 @@ class SineSequencer extends AbstractSequencer
 
 class PulseSequencer extends AbstractSequencer
 {
+  // amount of frames it takes for the pulse to fully travel
+  int pulseLength = 60;
+  
+  // amount of frames the pulse takes to go up and back.
+  int pulseWidth = 60;
   
   PulseSequencer() {
-    
+    // pulses are in a single direction, so always positive
+    setPositive(true);
   }
   
   float get(int point) {
-    return 0;
+    // determine framecount to figure out what range
+    // of points are within the pulse
+    int pulseFrame = frameCount % pulseLength;
+    // pulseFrame is now the current frame along the pulse
+    
+    // at framecount 0, all points should return 0
+    // at framecount pulseLength-1 all points except last should return 0
+    float framePerPoint = ((float)pulseLength)/((float)points);
+    // framePerPoint is the frame distance from each point
+    
+    // at frame 1 in this default case, point 0 should have some
+    // distance and all others should still be zero
+    
+    // for proof of concept, we're only returning an amount for point 0
+    if(point > 0) {
+      //return 0;
+    }
+    
+    // determine if the point is in the wave
+    float effectiveFrame = pulseFrame + (framePerPoint*point);
+    if(effectiveFrame > (pulseWidth)) {
+      return 0;
+    }
+    
+    float amt = wave(pulseFrame,pulseWidth);
+    return amt;
+  }
+  
+  void setPulseLength(int pulseLength) {
+    this.pulseLength = pulseLength;
+    recalculate();
   }
   
   // recalculate internal variables
