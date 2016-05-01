@@ -119,9 +119,13 @@ class PulseSequencer extends AbstractSequencer
   // amount of frames the pulse takes to go up and back.
   int pulseWidth = 60;
   
+  // internal vars
+  float pointWidth = 0.0;
+  
   PulseSequencer() {
     // pulses are in a single direction, so always positive
     setPositive(true);
+    recalculate();
   }
   
   float get(int point) {
@@ -132,9 +136,23 @@ class PulseSequencer extends AbstractSequencer
     
     // total pulse is the essential number of frames it uses.
     float totalPulse = ((float)pulseLength) + ((float)pulseWidth);
+    float pulseStart = 0.0 - (pulseWidth/2.0);
+    // technically we don't need a pulseEnd variable, it ends at pulseLength
     
-    // TODO: calculate conversion rate for pulse location and frame count
-    // TODO: return 0 unless point is within pulseWidth/2 of pulse location
+    // calculate conversion rate for pulse location and frame count
+    float pulseRate = totalPulse / pulseLength;
+    
+    float pulseLocation = pulseStart + (pulseFrame * pulseRate); 
+    
+    // calculate this points position along the pulse
+    float pointLocation = point * pointWidth;
+    
+    // return 0 unless point is within pulseWidth/2 of pulse location
+    if(pointLocation < (pulseLocation - (pointWidth/2.0)) ||
+        pointLocation > (pulseLocation + (pointWidth/2.0))) {
+      return 0;
+    }
+    
     // otherwise calculate using frame location
     
     // at framecount 0, all points should return 0
@@ -167,6 +185,6 @@ class PulseSequencer extends AbstractSequencer
   
   // recalculate internal variables
   void recalculate() {
-    
+    pointWidth = ((float)pulseLength)/((float)points);
   }
 }
