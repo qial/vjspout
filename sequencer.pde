@@ -117,7 +117,7 @@ class PulseSequencer extends AbstractSequencer
   int pulseLength = 60;
   
   // amount of frames the pulse takes to go up and back.
-  int pulseWidth = 60;
+  int pulseWidth = 30;
   
   // internal vars
   float pointWidth = 0.0;
@@ -153,28 +153,9 @@ class PulseSequencer extends AbstractSequencer
       return 0;
     }
     
-    // otherwise calculate using frame location
-    
-    // at framecount 0, all points should return 0
-    // at framecount pulseLength-1 all points except last should return 0
-    float framePerPoint = ((float)pulseLength)/((float)points);
-    // framePerPoint is the frame distance from each point
-    
-    // at frame 1 in this default case, point 0 should have some
-    // distance and all others should still be zero
-    
-    // for proof of concept, we're only returning an amount for point 0
-    if(point > 0) {
-      //return 0;
-    }
-    
-    // determine if the point is in the wave
-    float effectiveFrame = pulseFrame + (framePerPoint*point);
-    if(effectiveFrame > (pulseWidth)) {
-      return 0;
-    }
-    
-    float amt = wave(pulseFrame,pulseWidth);
+    // we're in the wave, so calculate location
+    float pointInWave = (pointLocation + pulseWidth/2.0) - pulseLocation;
+    float amt = wave(pointInWave,pulseWidth);
     return amt;
   }
   

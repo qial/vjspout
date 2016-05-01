@@ -395,11 +395,17 @@ class PulseCircle1 extends ParamEffect
   void play() {
     stroke(255);
     noFill();
+    int printlimit = 60;
+    if(frameCount<=printlimit)
+      println("Frame: "+frameCount);
     for(int i = 0; i < getParam(amt); i++) {
       float offset = i * getParam(inc);
+      float pulse = seq.get(i);
       float movement = seq.get(i) * getParam(amp);
       int circle = (int) (600 - offset - movement);
       makeCircle(circle);
+      if(frameCount<=printlimit)
+        println(i+": off="+offset+" pls="+pulse+" mv="+movement+" cir="+circle);
     }
   }
 }
