@@ -130,6 +130,13 @@ class PulseSequencer extends AbstractSequencer
     int pulseFrame = frameCount % pulseLength;
     // pulseFrame is now the current frame along the pulse
     
+    // total pulse is the essential number of frames it uses.
+    float totalPulse = ((float)pulseLength) + ((float)pulseWidth);
+    
+    // TODO: calculate conversion rate for pulse location and frame count
+    // TODO: return 0 unless point is within pulseWidth/2 of pulse location
+    // otherwise calculate using frame location
+    
     // at framecount 0, all points should return 0
     // at framecount pulseLength-1 all points except last should return 0
     float framePerPoint = ((float)pulseLength)/((float)points);
