@@ -35,9 +35,10 @@ file in the Processing editor and hit the run button.
 - v - toggles debug output for effects/params
 
 #### Effect Keys
-Pressing number 1 to 9 selects that effect.
-Pressing shift + number toggles an effect being always on
-Pressing 0 turns off all effects  
+- [1-9] - select effect
+- Shift+[1-9] - toggle effect always on
+- 0 - turn off all effects
+
 Some effects have changeable parameters:
 
 - q/a - control param 1
