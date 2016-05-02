@@ -171,14 +171,23 @@ class PulseSequencer extends AbstractSequencer
     // of points are within the pulse
     int pulseFrame = frameCount % pulseLength;
     // pulseFrame is now the current frame along the pulse
-    println("point="+point+" pointw="+pointWidth+" pulseFrame="+pulseFrame
-        +" position="+round(pointWidth*point));
-    if(round(pointWidth * point) > pulseFrame) {
+    
+    int pointLocation = round(pointWidth * point);
+    int pulseStart = round(pulseFrame - (pulseWidth/2.0));
+    int pulseEnd = round(pulseFrame + (pulseWidth/2.0));
+    println("point="+point
+        +" pointw="+pointWidth
+        +" pulseFrame="+pulseFrame
+        +" position="+pointLocation
+        +" pStart="+pulseStart
+        +" pEnd="+pulseEnd);
+    if(pointLocation >= pulseStart && pointLocation <= pulseEnd) {
       return 1.0;
     }
     else {
       return 0.0;
     }
+    
     
     // total pulse is the essential number of frames it uses.
     //float totalPulse = ((float)pulseLength) + ((float)pulseWidth);

@@ -387,9 +387,9 @@ class PulseCircle1 extends ParamEffect
   final String skip = "skip";
   PulseCircle1() {
     // set up params
-    addParam(amt,5);
-    addParam(inc,100);
-    addParam(amp,40);
+    addParam(amt,10);
+    addParam(inc,60);
+    addParam(amp,30);
     addParam(skip,3);
   }
   void play() {
