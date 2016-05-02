@@ -4,6 +4,8 @@
 interface Sequencer
 {
   float get(int point);
+  int getPoints();
+  void setPoints(int points);
 }
 
 abstract class AbstractSequencer implements Sequencer
@@ -18,6 +20,14 @@ abstract class AbstractSequencer implements Sequencer
   // recalculate any internal vars
   abstract void recalculate();
   
+  int getPoints() {
+    return points;
+  }
+  
+  boolean positive() {
+    return positive;
+  }
+  
   void setPoints(int points) {
     this.points = points;
     recalculate();
@@ -28,6 +38,34 @@ abstract class AbstractSequencer implements Sequencer
     // likely nothing to recalculate, but just in case
     recalculate();
   }
+}
+
+class SequencerViewer extends ParamEffect
+{
+  // declaring params
+  final String w = "boxWidth";
+  final String h = "boxHeight";
+  final String a = "amplitude";
+  final String m = "multiplier";
+  Sequencer seq = new PulseSequencer();
+  public SequencerViewer() {
+    addParam(w,20);
+    addParam(h,20);
+    addParam(a,120);
+    addParam(m,1);
+  }
+  void play() {
+    // draw the boxes
+    
+    for(int i = 0; i < seq.getPoints(); i++) {
+      float amt = seq.get(i);
+      int offset = round(getParam(a) * amt);
+      int x = i*getParam(w);
+      int y = height - getParam(h) - offset;
+      rect(x,y,getParam(w),getParam(h));
+    }
+  }
+  
 }
 
 abstract class PeriodSequencer extends AbstractSequencer
@@ -117,7 +155,7 @@ class PulseSequencer extends AbstractSequencer
   int pulseLength = 60;
   
   // amount of frames the pulse takes to go up and back.
-  int pulseWidth = 30;
+  int pulseWidth = 10;
   
   // internal vars
   float pointWidth = 0.0;
@@ -150,11 +188,12 @@ class PulseSequencer extends AbstractSequencer
     // return 0 unless point is within pulseWidth/2 of pulse location
     if(pointLocation < (pulseLocation - (pointWidth/2.0)) ||
         pointLocation > (pulseLocation + (pointWidth/2.0))) {
-      return 0;
+      //return 0;
     }
     
     // we're in the wave, so calculate location
     float pointInWave = (pointLocation + pulseWidth/2.0) - pulseLocation;
+    println("poL="+pointLocation+"\tpW2="+pulseWidth/2.0+"\tpuL="+pulseLocation+"\tpiW="+pointInWave);
     float amt = wave(pointInWave,pulseWidth);
     return amt;
   }

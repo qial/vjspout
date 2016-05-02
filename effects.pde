@@ -3,10 +3,10 @@
 
 class Diamond1 extends ParamEffect
 {
-  String amt = "shapes";
-  String inc = "spacing";
-  String amp = "amplitude";
-  String start = "size";
+  final String amt = "shapes";
+  final String inc = "spacing";
+  final String amp = "amplitude";
+  final String start = "size";
   Diamond1() {
     // set up params
     addParam(amt,10);
@@ -44,10 +44,10 @@ class Diamond1 extends ParamEffect
 
 class Diamond3 extends ParamEffect
 {
-  String amt = "shapes";
-  String inc = "spacing";
-  String amp = "amplitude";
-  String start = "start";
+  final String amt = "shapes";
+  final String inc = "spacing";
+  final String amp = "amplitude";
+  final String start = "start";
   Diamond3() {
     // set up params
     addParam(amt,10);
@@ -144,10 +144,10 @@ class VUp1 extends SimpleEffect
 
 class VUp2 extends ParamEffect
 {
-  String amt = "shapes";
-  String w = "width";
-  String inc = "spacing";
-  String fade = "fade";
+  final String amt = "shapes";
+  final String w = "width";
+  final String inc = "spacing";
+  final String fade = "fade";
   //String amp = "amplitude";
   //String start = "start";
   VUp2() {
@@ -182,10 +182,10 @@ class VUp2 extends ParamEffect
 
 class Rotater1 extends ParamEffect
 {
-  String amt = "shapes";
-  String inc = "spacing";
-  String amp = "amplitude";
-  String start = "size";
+  final String amt = "shapes";
+  final String inc = "spacing";
+  final String amp = "amplitude";
+  final String start = "size";
   Rotater1() {
     // set up params
     addParam(amt,10);
@@ -232,10 +232,10 @@ class Circles2 extends SimpleEffect
 
 class TriangleWave1 extends ParamEffect
 {
-  String amt = "shapes";
-  String inc = "spacing";
-  String amp = "amplitude";
-  String start = "size";
+  final String amt = "shapes";
+  final String inc = "spacing";
+  final String amp = "amplitude";
+  final String start = "size";
   TriangleWave1() {
     // set up params
     addParam(amt,10);
@@ -381,10 +381,10 @@ class PulseCircle1 extends ParamEffect
 {
   Sequencer seq = new PulseSequencer();
   
-  String amt = "shapes";
-  String inc = "spacing";
-  String amp = "amplitude";
-  String skip = "skip";
+  final String amt = "shapes";
+  final String inc = "spacing";
+  final String amp = "amplitude";
+  final String skip = "skip";
   PulseCircle1() {
     // set up params
     addParam(amt,5);
@@ -397,15 +397,16 @@ class PulseCircle1 extends ParamEffect
     noFill();
     int printlimit = 60;
     if(frameCount<=printlimit)
-      println("Frame: "+frameCount);
+      println("\nFrame: "+frameCount);
     for(int i = 0; i < getParam(amt); i++) {
       float offset = i * getParam(inc);
       float pulse = seq.get(i);
-      float movement = seq.get(i) * getParam(amp);
+      float movement = pulse * getParam(amp);
       int circle = (int) (600 - offset - movement);
       makeCircle(circle);
-      if(frameCount<=printlimit)
-        println(i+": off="+offset+" pls="+pulse+" mv="+movement+" cir="+circle);
+      if(frameCount<=printlimit) {
+        //println(i+": off="+offset+" pls="+pulse+" mv="+movement+" cir="+circle);
+      }
     }
   }
 }

@@ -68,7 +68,9 @@ void loadEffects() {
   effects.add(new Arrowhead2());
   effects.add(new Diamond3());
   //effects.add(new Diamond2());
-  effects.add(new WatashiMachine1());
+  //effects.add(new WatashiMachine1());
+  effects.add(new SequencerViewer());
+  effects.get(effects.size()-1).toggleAlwaysOn();
 }
 
 void draw()  { 
@@ -141,6 +143,28 @@ void keyPressed() {
       }
     }
   }
+  // cancel all effects and turn off always on
+  if(key == '0') {
+    for(int i = 0; i < effects.size(); i++) {
+      if(effects.get(i).alwaysOn()) {
+        effects.get(i).toggleAlwaysOn();
+      }
+      effects.get(i).setEnabled(false);
+    }
+  }
+  // handle setting of always on
+  switch(key) {
+    case '!': effects.get(0).toggleAlwaysOn(); break;
+    case '@': effects.get(1).toggleAlwaysOn(); break;
+    case '#': effects.get(2).toggleAlwaysOn(); break;
+    case '$': effects.get(3).toggleAlwaysOn(); break;
+    case '%': effects.get(4).toggleAlwaysOn(); break;
+    case '^': effects.get(5).toggleAlwaysOn(); break;
+    case '&': effects.get(6).toggleAlwaysOn(); break;
+    case '*': effects.get(7).toggleAlwaysOn(); break;
+    case '(': effects.get(8).toggleAlwaysOn(); break;
+  }
+  // handle debug mode
   if(key == 'v') {
     if(DEBUG) {
       DEBUG = false;
@@ -149,7 +173,7 @@ void keyPressed() {
     }
   }
   for(int i = 0; i < effects.size(); i++) {
-    if(effects.get(i).enabled()) {
+    if(effects.get(i).enabled() && !effects.get(i).alwaysOn()) {
       println("Sending key '"+key+"' to Effect "+(i+1));
       effects.get(i).handleKey();
     }
