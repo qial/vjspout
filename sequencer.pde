@@ -155,7 +155,7 @@ class PulseSequencer extends AbstractSequencer
   int pulseLength = 60;
   
   // amount of frames the pulse takes to go up and back.
-  int pulseWidth = 120;
+  int pulseWidth = 15;
   
   // internal vars
   float pointWidth = 0.0;
@@ -182,7 +182,12 @@ class PulseSequencer extends AbstractSequencer
         +" pStart="+pulseStart
         +" pEnd="+pulseEnd);
     if(pointLocation >= pulseStart && pointLocation <= pulseEnd) {
-      return 1.0;
+      // get distance from pulse start
+      float dist = pointLocation-pulseStart;
+      // use the wave function
+      float amt = wave(dist,pulseWidth);
+      println("dist="+dist+" amt="+amt);
+      return amt;
     }
     else {
       return 0.0;
