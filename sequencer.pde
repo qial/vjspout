@@ -56,11 +56,11 @@ class SequencerViewer extends ParamEffect
   }
   void play() {
     // draw the boxes
-    
+    noFill();
     for(int i = 0; i < seq.getPoints(); i++) {
       float amt = seq.get(i);
       int offset = round(getParam(a) * amt);
-      int x = i*getParam(w);
+      int x = i*getParam(w)*2;
       int y = height - getParam(h) - offset;
       rect(x,y,getParam(w),getParam(h));
     }
@@ -155,7 +155,7 @@ class PulseSequencer extends AbstractSequencer
   int pulseLength = 60;
   
   // amount of frames the pulse takes to go up and back.
-  int pulseWidth = 10;
+  int pulseWidth = 120;
   
   // internal vars
   float pointWidth = 0.0;
@@ -171,31 +171,39 @@ class PulseSequencer extends AbstractSequencer
     // of points are within the pulse
     int pulseFrame = frameCount % pulseLength;
     // pulseFrame is now the current frame along the pulse
+    println("point="+point+" pointw="+pointWidth+" pulseFrame="+pulseFrame
+        +" position="+round(pointWidth*point));
+    if(round(pointWidth * point) > pulseFrame) {
+      return 1.0;
+    }
+    else {
+      return 0.0;
+    }
     
     // total pulse is the essential number of frames it uses.
-    float totalPulse = ((float)pulseLength) + ((float)pulseWidth);
-    float pulseStart = 0.0 - (pulseWidth/2.0);
+    //float totalPulse = ((float)pulseLength) + ((float)pulseWidth);
+    //float pulseStart = 0.0 - (pulseWidth/2.0);
     // technically we don't need a pulseEnd variable, it ends at pulseLength
     
     // calculate conversion rate for pulse location and frame count
-    float pulseRate = totalPulse / pulseLength;
+    //float pulseRate = totalPulse / pulseLength;
     
-    float pulseLocation = pulseStart + (pulseFrame * pulseRate); 
+    //float pulseLocation = pulseStart + (pulseFrame * pulseRate); 
     
     // calculate this points position along the pulse
-    float pointLocation = point * pointWidth;
+    //float pointLocation = point * pointWidth;
     
     // return 0 unless point is within pulseWidth/2 of pulse location
-    if(pointLocation < (pulseLocation - (pointWidth/2.0)) ||
-        pointLocation > (pulseLocation + (pointWidth/2.0))) {
+    //if(pointLocation < (pulseLocation - (pointWidth/2.0)) ||
+    //    pointLocation > (pulseLocation + (pointWidth/2.0))) {
       //return 0;
-    }
+    //}
     
     // we're in the wave, so calculate location
-    float pointInWave = (pointLocation + pulseWidth/2.0) - pulseLocation;
-    println("poL="+pointLocation+"\tpW2="+pulseWidth/2.0+"\tpuL="+pulseLocation+"\tpiW="+pointInWave);
-    float amt = wave(pointInWave,pulseWidth);
-    return amt;
+    //float pointInWave = (pointLocation + pulseWidth/2.0) - pulseLocation;
+    //println("poL="+pointLocation+"\tpW2="+pulseWidth/2.0+"\tpuL="+pulseLocation+"\tpiW="+pointInWave);
+    //float amt = wave(pointInWave,pulseWidth);
+    //return amt;
   }
   
   void setPulseLength(int pulseLength) {
