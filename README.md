@@ -36,6 +36,8 @@ file in the Processing editor and hit the run button.
 
 #### Effect Keys
 Pressing number 1 to 9 selects that effect.
+Pressing shift + number toggles an effect being always on
+Pressing 0 turns off all effects  
 Some effects have changeable parameters:
 
 - q/a - control param 1
