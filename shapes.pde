@@ -5,7 +5,6 @@ int getSizeForOffset(int offset) {
   return (int)(offset*2 * altitude);
 }
 
-
 void makeTriangle(int size, int offset) {
   noFill();
   stroke(255);
@@ -53,7 +52,7 @@ void makeV(int width, int offset) {
 // uses a cosine model from 0 to pi and
 // returns a value from 1.0 to 0.0
 // frame/total is mapped to 0 to pi radians
-float waveDown(int frame, int total) {
+float waveDown(float frame, int total) {
   float dist = ((float)frame)/((float)total);
   float amp = cos(dist*PI);
   // turn amplitude from -1 -> 1 to 0 -> 2
@@ -66,9 +65,23 @@ float waveDown(int frame, int total) {
 // uses a cosine model from pi to 2pi and
 // returns a value from 0.0 to 1.0
 // frame/total is mapped to pi to 2pi radians
-float waveUp(int frame, int total) {
+float waveUp(float frame, int total) {
   float dist = ((float)frame)/((float)total);
   float amp = cos((dist*PI)+PI);
+  // turn amplitude from -1 -> 1 to 0 -> 2
+  amp += 1.0;
+  // divide by 2 to make 0 -> 1
+  amp /= 2.0;
+  return amp;
+}
+
+// essentially combines waveDown and waveUp
+// frame/total is mapped to pi to 3pi radians
+// uses a cosine model from pi to 3pi and
+// returns a value from 0.0 to 1.0
+float wave(float frame, int total) {
+  float dist = ((float)frame)/((float)total);
+  float amp = cos((dist*TWO_PI)+PI);
   // turn amplitude from -1 -> 1 to 0 -> 2
   amp += 1.0;
   // divide by 2 to make 0 -> 1

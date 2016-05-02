@@ -35,13 +35,18 @@ file in the Processing editor and hit the run button.
 - v - toggles debug output for effects/params
 
 #### Effect Keys
-Pressing number 1 to 9 selects that effect.
+- [1-9] - select effect
+- Shift+[1-9] - toggle effect always on
+- 0 - turn off all effects
+
 Some effects have changeable parameters:
 
 - q/a - control param 1
 - w/s - control param 2
 - e/d - control param 3
 - r/f - control param 4
+- t/g - control param 5
+- y/h - control param 6
 
 Using shift + key will change parameter by 5 instead of by 1.
 
@@ -51,6 +56,7 @@ Using shift + key will change parameter by 5 instead of by 1.
 - *effect.pde* - Effect interface and utility classes
 - *effects.pde* - Individual effect implementations 
 - *sequencer.pde* - Sequencer handles the math to make sine-like movement easier for effects to use.
+- *shape.pde* - Beginning work on an API for defining effects
 - *shapes.pde* - Helper methods for drawing shapes used in effects.
 
 spout.pde, JSpout.java, and files in the code32 and code64 folders are copied from the Spout2 installation.
@@ -65,3 +71,6 @@ spout.pde, JSpout.java, and files in the code32 and code64 folders are copied fr
 - MIDI input support to change effect parameters using hardware controllers
 - Support for choosing output resolutions
 - Seamlessly transform effect code to produce same output across range of resolutions.
+- Global BPM settings to re-render effects for different BPMs. (Default is 120bpm still)
+- PulseSequencer to render sine wave pulse shapes, definable by speed, amount, and size of pulse.
+

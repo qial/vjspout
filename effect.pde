@@ -8,19 +8,35 @@ interface Effect
   void handleKey();
   void setEnabled(boolean enabled);
   boolean enabled();
+  void toggleAlwaysOn();
+  boolean alwaysOn();
 }
 
 abstract class SimpleEffect implements Effect
 {
-  String name() {
-    return getClass().getName();
-  }
   boolean enabled = false;
   void setEnabled(boolean enabled) {
     this.enabled = enabled;
   }
   boolean enabled() {
+    if(alwaysOn) {
+      return true;
+    }
     return enabled;
+  }
+  boolean alwaysOn = false;
+  void toggleAlwaysOn() {
+    if(alwaysOn) {
+      alwaysOn = false;
+    } else {
+      alwaysOn = true;
+    }
+  }
+  boolean alwaysOn() {
+    return alwaysOn;
+  }
+  String name() {
+    return getClass().getName();
   }
   void handleKey() {}
   abstract void play();
@@ -59,9 +75,18 @@ abstract class ParamEffect extends SimpleEffect
       case 'R': incParamAmt(3);break;
       case 'f': decParam(3);break;
       case 'F': decParamAmt(3);break;
+      case 't': incParam(4);break;
+      case 'T': incParamAmt(4);break;
+      case 'g': decParam(4);break;
+      case 'G': decParamAmt(4);break;
+      case 'y': incParam(5);break;
+      case 'Y': incParamAmt(5);break;
+      case 'h': decParam(5);break;
+      case 'H': decParamAmt(5);break;
     }
   }
   private void incParam(int num) {
+    if(num >= paramNames.size()) return;
     println("incParam: "+num);
     String param = (String)paramNames.get(num);
     int v = (int)params.get(param);
@@ -70,6 +95,7 @@ abstract class ParamEffect extends SimpleEffect
     params.put(param,v);
   }
   private void decParam(int num) {
+    if(num >= paramNames.size()) return;
     println("decParam: "+num);
     String param = (String)paramNames.get(num);
     int v = (int)params.get(param);
@@ -78,6 +104,7 @@ abstract class ParamEffect extends SimpleEffect
     params.put(param,v);
   }
   private void incParamAmt(int num) {
+    if(num >= paramNames.size()) return;
     println("incParamAmt: "+num);
     // TODO make this change amount instead of just +5
     String param = (String)paramNames.get(num);
@@ -88,6 +115,7 @@ abstract class ParamEffect extends SimpleEffect
   }
   private void decParamAmt(int num) {
     println("decParamAmt: "+num);
+    if(num >= paramNames.size()) return;
     // TODO make this change amount instead of just +5
     String param = (String)paramNames.get(num);
     int v = (int)params.get(param);
