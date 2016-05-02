@@ -155,7 +155,7 @@ class PulseSequencer extends AbstractSequencer
   int pulseLength = 60;
   
   // amount of frames the pulse takes to go up and back.
-  int pulseWidth = 15;
+  int pulseWidth = 30;
   
   // internal vars
   float pointWidth = 0.0;

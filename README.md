@@ -63,6 +63,17 @@ spout.pde, JSpout.java, and files in the code32 and code64 folders are copied fr
 
 #### Development goals:
 
+- Convert to Eclipse project with standard java structure:
+  - net.qial.vj.effect - Effect interface and abstract utility classes
+  - net.qial.vj.effects - Actual effect implementations
+  - net.qial.vj.main - Program start classes
+  - net.qial.vj.processing - Processing applet setup and interactivity
+  - net.qial.vj.sequencer - Sequencer interface and abstract classes
+  - net.qial.vj.sequencers - Sequencer implementations
+  - net.qial.vj.shape - API for defining effects
+  - net.qial.vj.shapes - Shape implementations
+  - net.qial.vj.spout - Spout-based classes and the Spout2 code
+  - net.qial.vj.util - utility classes and such
 - Save/load effect parameters
 - Load new effects on the fly instead of a compiled 1-9 list.
 - Export-to-video button for simplified export of good effects
